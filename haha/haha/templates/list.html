@@ -1,20 +1,34 @@
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
-<h1><strong>{{ screen_title }}</strong></h1>
-<p>안녕 여러분.</p> <p>이 내용은 list.html 에 있는 거야</p> <p>
-<hr>
-{% for entry in entries %}
-<div>
-<h3><a href="/blog/entry/{{ entry.id }}" >{{ entry.Title }}</a></h3>
-<ul>
-<li>{{ entry.created }}</li>
-</ul>
-<div>{{ entry.Content }}</div>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    {% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+
+<body>
+<h1></h1>
+<div id="content">
+    {% for entry in entries %}
+    <div class="post_entry">
+        <h3 id="post_" class="post_title"><a href="/blog/entry/{{ entry.id }}">{{ entry.Title }}</a></h3>
+        <p class="post_info">글 갈래 : [  ] / <a href="/blog/entry/"></a></p>
+        <div class="content_box">{{ entry.Content }}</div>
+        <ul class="post_meta">
+            <li>꼬리표 : {% for tag in entry.Tags.all %}
+            <span>{{tag.Title}}</span>
+            {% endfor %}</li>
+            <li><a href="/blog/get_comments/">댓글 ()</a></li>
+        </ul>
+    </div>
+    {% endfor %}
 </div>
-tags:
-<li>{% for tag in entry.Tags.all %}
-<span>{{tag.Title}}</span>
-{% endfor %}</li>
-{% endfor %}
+<div id="sidebar"></div>
 {% for page in range_page %}
 <a href="/blog/page/{{ page }}" >[{{ page }}]</a>
 {% endfor %}
+</body>
+</html>

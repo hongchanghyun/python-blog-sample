@@ -174,6 +174,7 @@ def update_post(request):
     
     return HttpResponse('%s번 글을 제대로 수정했습니다.' % entry.id)
 
+@csrf_exempt
 def add_comment(request):
     # 글쓴이 이름 처리
     cmt_name = request.POST.get('name', '')
@@ -209,10 +210,11 @@ def add_comment(request):
     
     return HttpResponse('문제가 생겨 저장하지 못했습니다.')
 
+@csrf_exempt
 def del_comment(request):
     try:
-        del_entry = Entries.objects.get(id=request.POST['comment_id'], Password=md5.md5(request.POST['password']).hexdigest())
-        del_entry.delete()
+        del_comment = Comments.objects.get(id=request.POST['comment_id'], Password=md5.md5(request.POST['password']).hexdigest())
+        del_comment.delete()
         return HttpResponse('댓글 잘 삭제했다, 얼쑤.')
     except:
         return HttpResponse('제대로 삭제하지 못했습니다.')        

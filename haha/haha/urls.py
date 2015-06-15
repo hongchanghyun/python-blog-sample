@@ -25,4 +25,4 @@ urlpatterns = [
     url(r'^blog/add/post/$', 'blog.views.add_post'),
     url(r'^blog/add/comment/$', 'blog.views.add_comment'),
     url(r'^blog/del/comment/$', 'blog.views.del_comment'),
-]
+] 
