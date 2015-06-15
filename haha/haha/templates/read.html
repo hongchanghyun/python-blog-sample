@@ -1,0 +1,21 @@
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+<div>
+	<h3><a href="/blog/entry/"  href="/blog/entry/"></a></h3>
+	<ul>
+	<li>{{current_entry.Content}}</li>
+	<li>{% for tag in current_entry.Tags.all %}
+	        <span>{{tag.Title}}</span>
+	        {% endfor %}</li>      
+	{% if prev_entry %}
+	    <li><a href="/blog/entry/{{prev_entry.id}}">이전 글 ({{prev_entry.id}})</a></li>
+	{% endif %}
+	
+	{% if next_entry %}
+	    <li><a href="/blog/entry/{{next_entry.id}}">다음 글 ({{next_entry.id}})</a></li>
+	{% endif %}
+	</ul>
+	<div>
+	{% include 'comments.html' %}
+	{% include 'comment_form.html' %}
+	</div> 
+</div>

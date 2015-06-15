@@ -1,0 +1,18 @@
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+{% if comments|length %}
+<ul>
+{% for comment in comments %}
+    <li>{{comment.Name}}님이 {{comment.created}}에 남긴 댓글
+    <p>{{comment.Content}}</p></li>
+    
+    <form method="post" action="/blog/del/comment/">
+	    <input type="hidden" name="comment_id" value="{{comment.id}}" />
+	    <p><label for="password">비밀번호</label><input type="password" id="password" name="password" value="" /></p>
+	    <p><input type="submit" value="삭제하기" /></p>
+	</form>
+{% endfor %}
+</ul>
+{% else %}
+댓글이 없습니다.
+{% endif %}
+
