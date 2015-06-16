@@ -1,27 +1,17 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    {% load staticfiles %}
-	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-</head>
+{% include 'layout/header.html' %}
 
-<body>
-
-<body>
 <h1></h1>
 <div id="content">
     {% for entry in entries %}
     <div class="post_entry">
         <h3 id="post_" class="post_title"><a href="/blog/entry/{{ entry.id }}">{{ entry.Title }}</a></h3>
-        <p class="post_info">ê¸€ ê°ˆëž˜ : [  ] / <a href="/blog/entry/"></a></p>
+        <p class="post_info">±Û °¥·¡ : [  ] / <a href="/blog/entry/"></a></p>
         <div class="content_box">{{ entry.Content }}</div>
         <ul class="post_meta">
-            <li>ê¼¬ë¦¬í‘œ : {% for tag in entry.Tags.all %}
+            <li>²¿¸®Ç¥ : {% for tag in entry.Tags.all %}
             <span>{{tag.Title}}</span>
             {% endfor %}</li>
-            <li><a href="/blog/get_comments/">ëŒ“ê¸€ ()</a></li>
+            <li><a href="/blog/get_comments/">´ñ±Û ()</a></li>
         </ul>
     </div>
     {% endfor %}
@@ -30,5 +20,5 @@
 {% for page in range_page %}
 <a href="/blog/page/{{ page }}" >[{{ page }}]</a>
 {% endfor %}
-</body>
-</html>
+
+{% include 'layout/footer.html' %}
